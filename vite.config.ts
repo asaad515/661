@@ -26,11 +26,28 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared"),
-    },
+    }
   },
   root: path.resolve(__dirname, "client"),
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      external: [],
+      output: {
+        manualChunks: {
+          'vendor': [
+            '@radix-ui/react-icons',
+            '@tremor/react',
+            'lucide-react',
+            'react',
+            'react-dom'
+          ]
+        }
+      }
+    }
   },
+  optimizeDeps: {
+    include: ['@radix-ui/react-icons']
+  }
 });
