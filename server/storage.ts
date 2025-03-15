@@ -898,24 +898,79 @@ export class DatabaseStorage implements IStorage {
     }
   }
 
-
   async logSystemActivity(activity: InsertSystemActivity): Promise<SystemActivity> {
     try {
-      console.log("Attempting to log system activity:", activity);
+      // تحسين تفاصيل النشاط
+      const enrichedDetails = {
+        ...activity.details,
+        timestamp: new Date().toISOString(),
+        userAgent: activity.userAgent,
+        ipAddress: activity.ipAddress,
+      };
+
       const [newActivity] = await db
         .insert(systemActivities)
         .values({
           ...activity,
+          details: enrichedDetails,
           timestamp: new Date()
         })
         .returning();
 
-      console.log("Successfully created activity record:", newActivity);
+      // تخزين مؤقت للأنشطة الأخيرة
+      const recentActivities = await this.getSystemActivities({ 
+        startDate: new Date(Date.now() - 24 * 60 * 60 * 1000) 
+      });
+      await this.cache.setFrequentData('recent_activities', recentActivities);
+
+      // إذا كان النشاط يتعلق بالأمان، قم بالتنبيه
+      if (
+        activity.activityType.includes('login') ||
+        activity.activityType.includes('permission') ||
+        activity.activityType.includes('user')
+      ) {
+        // يمكن إضافة منطق للتنبيهات الأمنية هنا
+        await this.createSecurityAlert(activity);
+      }
+
       return newActivity;
     } catch (error) {
       console.error("Error in logSystemActivity:", error);
       throw new Error("فشل في تسجيل النشاط");
     }
+  }
+
+  private async createSecurityAlert(activity: SystemActivity) {
+    // إنشاء تنبيه أمني بناءً على نوع النشاط
+    const alert = {
+      type: 'security',
+      severity: this.calculateSecurityAlertSeverity(activity),
+      details: activity.details,
+      timestamp: new Date(),
+    };
+    
+    // يمكن إضافة منطق لإرسال التنبيهات للمسؤولين
+    await this.notifyAdmins(alert);
+  }
+
+  private calculateSecurityAlertSeverity(activity: SystemActivity): 'low' | 'medium' | 'high' {
+    if (activity.activityType.includes('failed_login')) {
+      return 'high';
+    }
+    if (activity.activityType.includes('permission_change')) {
+      return 'medium';
+    }
+    return 'low';
+  }
+
+  private async notifyAdmins(alert: any) {
+    const admins = await db
+      .select()
+      .from(users)
+      .where(eq(users.role, 'admin'));
+
+    // يمكن إضافة منطق لإرسال الإشعارات للمسؤولين
+    // مثل إرسال بريد إلكتروني أو إشعار داخل النظام
   }
 
   async getSystemActivities(filters: {

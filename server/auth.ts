@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { Express } from "express";
+import { Express, type Request, type Response, type NextFunction } from "express";
 import session from "express-session";
 import bcrypt from "bcryptjs";
 import { storage } from "./storage";
@@ -191,4 +191,28 @@ export function setupAuth(app: Express) {
     const { password, ...userWithoutPassword } = req.user as User;
     res.json(userWithoutPassword);
   });
+}
+
+export function requireAuth(req: Request, res: Response, next: NextFunction) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "يجب تسجيل الدخول أولاً" });
+  }
+  next();
+}
+
+export function checkPermissions(...permissions: string[]) {
+  return (req: Request, res: Response, next: NextFunction) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "يجب تسجيل الدخول أولاً" });
+    }
+
+    const userPermissions = req.user.permissions || [];
+    const hasPermission = permissions.every(p => userPermissions.includes(p));
+    
+    if (!hasPermission) {
+      return res.status(403).json({ message: "لا تملك الصلاحيات الكافية" });
+    }
+
+    next();
+  };
 }

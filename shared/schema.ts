@@ -1,7 +1,6 @@
-import { pgTable, text, serial, timestamp, boolean, decimal, integer, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean, decimal, integer, varchar, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-import { jsonb } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
@@ -17,7 +16,11 @@ export const users = pgTable("users", {
   permissions: text("permissions").array(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+}, (table) => ({
+  usernameIdx: index("username_idx").on(table.username),
+  emailIdx: index("email_idx").on(table.email),
+  roleIdx: index("role_idx").on(table.role)
+}));
 
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
@@ -40,7 +43,12 @@ export const products = pgTable("products", {
   thumbnailUrl: text("thumbnail_url"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+}, (table) => ({
+  barcodeIdx: index("barcode_idx").on(table.barcode),
+  productCodeIdx: index("product_code_idx").on(table.productCode),
+  nameIdx: index("product_name_idx").on(table.name),
+  categoryIdx: index("category_idx").on(table.categoryId)
+}));
 
 export const productCategories = pgTable("product_categories", {
   id: serial("id").primaryKey(),
@@ -57,7 +65,11 @@ export const customers = pgTable("customers", {
   address: text("address"),
   notes: text("notes"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
-});
+}, (table) => ({
+  nameIdx: index("customer_name_idx").on(table.name),
+  phoneIdx: index("customer_phone_idx").on(table.phone),
+  emailIdx: index("customer_email_idx").on(table.email)
+}));
 
 export const sales = pgTable("sales", {
   id: serial("id").primaryKey(),
@@ -70,7 +82,11 @@ export const sales = pgTable("sales", {
   date: timestamp("date").notNull().defaultNow(),
   userId: integer("user_id").notNull().references(() => users.id),
   isInstallment: boolean("is_installment").notNull().default(false),
-});
+}, (table) => ({
+  dateIdx: index("sales_date_idx").on(table.date),
+  customerIdx: index("sales_customer_idx").on(table.customerId),
+  productIdx: index("sales_product_idx").on(table.productId)
+}));
 
 export const invoices = pgTable("invoices", {
   id: serial("id").primaryKey(),
@@ -198,7 +214,11 @@ export const inventoryTransactions = pgTable("inventory_transactions", {
   date: timestamp("date").notNull().defaultNow(),
   userId: integer("user_id").notNull(),
   notes: text("notes"),
-});
+}, (table) => ({
+  dateIdx: index("inv_trans_date_idx").on(table.date),
+  productIdx: index("inv_trans_product_idx").on(table.productId),
+  typeIdx: index("inv_trans_type_idx").on(table.type)
+}));
 
 export const inventoryAdjustments = pgTable("inventory_adjustments", {
   id: serial("id").primaryKey(),
@@ -268,7 +288,11 @@ export const expenses = pgTable("expenses", {
   status: text("status").notNull().default("active"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+}, (table) => ({
+  dateIdx: index("expenses_date_idx").on(table.date),
+  categoryIdx: index("expenses_category_idx").on(table.categoryId),
+  statusIdx: index("expenses_status_idx").on(table.status)
+}));
 
 export const suppliers = pgTable("suppliers", {
   id: serial("id").primaryKey(),
@@ -312,7 +336,11 @@ export const appointments = pgTable("appointments", {
   notes: text("notes"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
-});
+}, (table) => ({
+  dateIdx: index("appointments_date_idx").on(table.date),
+  customerIdx: index("appointments_customer_idx").on(table.customerId),
+  statusIdx: index("appointments_status_idx").on(table.status)
+}));
 
 export const fileStorage = pgTable("file_storage", {
   id: serial("id").primaryKey(),
