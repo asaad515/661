@@ -1,0 +1,315 @@
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@import '@fontsource/aref-ruqaa/400.css';
+@import '@fontsource/reem-kufi/500.css';
+@import '@fontsource/reem-kufi/700.css';
+@import '@fontsource/aref-ruqaa/700.css';
+@import '@fontsource/lateef/400.css';
+@import '@fontsource/lateef/700.css';
+@import '@fontsource/reem-kufi/400.css';
+
+@tailwind base;
+@tailwind components;
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.system-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dots-animation {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dots-animation span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: dots 1.4s ease-in-out infinite;
+}
+
+.dots-animation span:nth-child(1) {
+  animation-delay: -0.32s;
+  background: var(--primary);
+}
+
+.dots-animation span:nth-child(2) {
+  animation-delay: -0.16s;
+  background: var(--secondary);
+}
+
+.dots-animation span:nth-child(3) {
+  background: var(--accent);
+}
+
+@keyframes dots {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.logo-container {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.5;
+  animation: float-around 20s infinite linear;
+}
+
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  background: var(--primary);
+  top: -150px;
+  left: -150px;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--secondary);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  width: 250px;
+  height: 250px;
+  background: var(--accent);
+  top: 50%;
+  left: 30%;
+  animation-delay: -10s;
+}
+
+@keyframes float-around {
+  from {
+    transform: rotate(0deg) translate(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translate(100px) rotate(-360deg);
+  }
+}
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+  
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+    font-size: var(--font-size-base);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-family, theme('fontFamily.noto'));
+  }
+
+  h1 {
+    @apply font-noto text-3xl font-bold;
+    font-size: var(--font-size-3xl);
+  }
+
+  h2 {
+    @apply font-noto text-2xl font-semibold;
+    font-size: var(--font-size-2xl);
+  }
+
+  h3 {
+    @apply font-noto text-xl font-medium;
+    font-size: var(--font-size-xl);
+  }
+
+  p, li, label, input, button {
+    @apply text-lg;
+    font-size: var(--font-size-lg);
+  }
+
+  .arabic-text {
+    text-align: right;
+    line-height: 1.8;
+    letter-spacing: 0;
+    font-feature-settings: "kern", "liga", "calt";
+    -webkit-font-feature-settings: "kern", "liga", "calt";
+    -ms-font-feature-settings: "kern", "liga", "calt";
+    font-variant-ligatures: common-ligatures;
+  }
+
+  .text-ar-base {
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+  }
+
+  .text-ar-lg {
+    font-size: var(--font-size-lg);
+    line-height: 1.9;
+  }
+
+  .text-ar-xl {
+    font-size: var(--font-size-xl);
+    line-height: 2;
+  }
+
+  .font-ar-normal {
+    font-weight: 400;
+  }
+
+  .font-ar-medium {
+    font-weight: 500;
+  }
+
+  .font-ar-bold {
+    font-weight: 700;
+  }
+
+  .rtl-flex {
+    @apply flex flex-row-reverse;
+  }
+
+  .rtl-grid {
+    @apply grid;
+    direction: rtl;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:scale-[1.02];
+  }
+
+  .input-rtl {
+    @apply text-right pr-4 text-lg;
+  }
+
+  .button-rtl {
+    @apply flex flex-row-reverse items-center justify-center gap-2 text-lg;
+  }
+
+  .sidebar-item {
+    @apply text-lg py-3;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold;
+  }
+
+  .table-text {
+    @apply text-lg;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}

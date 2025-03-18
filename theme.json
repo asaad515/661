@@ -1,0 +1,12 @@
+{
+  "primary": "hsl(142.1 76.2% 36.3%)",
+  "variant": "professional",
+  "appearance": "system",
+  "fontStyle": "noto",
+  "radius": 0.75,
+  "colors": {
+    "primary": "hsl(142.1 76.2% 36.3%)",
+    "secondary": "hsl(217.2 91.2% 59.8%)",
+    "accent": "hsl(316.8 81.2% 43.8%)"
+  }
+}

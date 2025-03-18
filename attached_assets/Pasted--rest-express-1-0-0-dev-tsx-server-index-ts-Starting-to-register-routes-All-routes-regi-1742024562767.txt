@@ -1,0 +1,78 @@
+
+> rest-express@1.0.0 dev
+> tsx server/index.ts
+
+Starting to register routes...
+All routes registered successfully
+7:42:24 AM [express] serving on port 5000
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+21 |  
+22 |  /* Import the fonts first */
+23 |  @import '@fontsource/ibm-plex-sans-arabic/400.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+24 |  @import '@fontsource/ibm-plex-sans-arabic/500.css';
+25 |  @import '@fontsource/ibm-plex-sans-arabic/700.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+22 |  /* Import the fonts first */
+23 |  @import '@fontsource/ibm-plex-sans-arabic/400.css';
+24 |  @import '@fontsource/ibm-plex-sans-arabic/500.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25 |  @import '@fontsource/ibm-plex-sans-arabic/700.css';
+26 |  @import '@fontsource/aref-ruqaa/400.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+23 |  @import '@fontsource/ibm-plex-sans-arabic/400.css';
+24 |  @import '@fontsource/ibm-plex-sans-arabic/500.css';
+25 |  @import '@fontsource/ibm-plex-sans-arabic/700.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+26 |  @import '@fontsource/aref-ruqaa/400.css';
+27 |  @import '@fontsource/aref-ruqaa/700.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+24 |  @import '@fontsource/ibm-plex-sans-arabic/500.css';
+25 |  @import '@fontsource/ibm-plex-sans-arabic/700.css';
+26 |  @import '@fontsource/aref-ruqaa/400.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+27 |  @import '@fontsource/aref-ruqaa/700.css';
+28 |  @import '@fontsource/lateef/400.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+25 |  @import '@fontsource/ibm-plex-sans-arabic/700.css';
+26 |  @import '@fontsource/aref-ruqaa/400.css';
+27 |  @import '@fontsource/aref-ruqaa/700.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28 |  @import '@fontsource/lateef/400.css';
+29 |  @import '@fontsource/lateef/700.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+26 |  @import '@fontsource/aref-ruqaa/400.css';
+27 |  @import '@fontsource/aref-ruqaa/700.css';
+28 |  @import '@fontsource/lateef/400.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+29 |  @import '@fontsource/lateef/700.css';
+30 |  @import '@fontsource/reem-kufi/400.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+27 |  @import '@fontsource/aref-ruqaa/700.css';
+28 |  @import '@fontsource/lateef/400.css';
+29 |  @import '@fontsource/lateef/700.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+30 |  @import '@fontsource/reem-kufi/400.css';
+31 |  @import '@fontsource/reem-kufi/500.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+28 |  @import '@fontsource/lateef/400.css';
+29 |  @import '@fontsource/lateef/700.css';
+30 |  @import '@fontsource/reem-kufi/400.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+31 |  @import '@fontsource/reem-kufi/500.css';
+32 |  @import '@fontsource/reem-kufi/700.css';
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+29 |  @import '@fontsource/lateef/700.css';
+30 |  @import '@fontsource/reem-kufi/400.css';
+31 |  @import '@fontsource/reem-kufi/500.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+32 |  @import '@fontsource/reem-kufi/700.css';
+33 |  
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+30 |  @import '@fontsource/reem-kufi/400.css';
+31 |  @import '@fontsource/reem-kufi/500.css';
+32 |  @import '@fontsource/reem-kufi/700.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33 |  
+34 |  /* Then Tailwind directives */
+7:42:27 AM [vite] Pre-transform error: Failed to resolve import "@/components/icons" from "client/src/pages/auth-page.tsx". Does the file exist?
